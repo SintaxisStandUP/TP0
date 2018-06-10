@@ -5,22 +5,44 @@ int main (void) {
 FILE *archivo;
 archivo = fopen ("lexemas.txt","r");
 int estado = 0;
-char carac = 'q';
-int i = 60;
+int carac;
+char lexemaIdentificador [200];
 while (!feof(archivo))
 {
-i = i -1;
 carac = getc(archivo);
-printf("%c", carac);
+switch (estado){
+	case 0:
+	if (isspace(carac)){
+		estado=0;
+		break;
+		}
+	else if (isdigit(carac)){
+		estado = 1;
+		break;}
+	else if (isalpha(carac)){
+		estado = 3;
+		break;}
+	else
+		estado = 10;
+	case 1:
+	printf ("digito \n");
+	break;	
+	case 2:
+	
+	break;
+	case 3:
+	printf ("letra \n");
+	break;
+	case 10:
+	printf ("Error \n");
+	break;	
+	}
+
 }
 printf("\nfin \n");
 int fclose (FILE *archivo);
 return 0;
 }
-
-
-
-
 
 /*
 estado  :=  INICIAL;
@@ -41,4 +63,15 @@ else
 error;/*  devolver  token  de  error  
 o  invocar  rutina  de  manejor  de  error  
 end  if  ;
+*/
+
+/*	LO QUE HICE CUANDO NO SABIA QUE EXISTIA ISALPHA
+if (carac < 91 && carac > 64)
+		estado = 1;		
+	else if (carac < 123 && carac > 96)
+		estado = 1;
+	else if(carac < 58 && carac > 47)
+		estado = 1;
+	printf("%c", carac);
+	break;
 */
