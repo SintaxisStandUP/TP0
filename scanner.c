@@ -24,15 +24,44 @@ switch (estado){
 		break;}
 	else
 		estado = 10;
-	case 1:
-	printf ("digito \n");
-	break;	
-	case 2:
 	
+	case 1:
+	if (isspace(carac)){
+		estado=2;
+		break;
+		}
+	else if (isdigit(carac)){
+		estado = 1;
+		break;}
+	else if (isalpha(carac)){
+		estado = 10;
+		break;}
+	else
+		estado = 10;
+	break;	
+	
+	case 2:
+	estado = 99;
+	printf ("constante entera \n");
 	break;
+	
 	case 3:
-	printf ("letra \n");
+	if (isspace(carac)){
+		estado=4;
+		break;
+		}
+	else if (isdigit(carac)||isalpha(carac)){
+		estado = 3;
+		break;}
+	else
+		estado = 10;
 	break;
+	
+	case 4:
+	estado = 99;
+	printf ("identificador \n");
+	break;
+	
 	case 10:
 	printf ("Error \n");
 	break;	
