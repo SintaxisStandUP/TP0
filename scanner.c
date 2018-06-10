@@ -6,7 +6,12 @@ FILE *archivo;
 archivo = fopen ("lexemas.txt","r");
 int estado = 0;
 int carac;
+int acum_ident = 0;
+int acum_const = 0;
+int acum_error = 0;
 char lexemaIdentificador [200];
+
+
 while (!feof(archivo))
 {
 carac = getc(archivo);
@@ -42,6 +47,7 @@ switch (estado){
 	
 	case 2:
 	estado = 99;
+	acum_const += 1;
 	printf ("constante entera \n");
 	break;
 	
@@ -59,6 +65,7 @@ switch (estado){
 	
 	case 4:
 	estado = 99;
+	acum_ident += 1;
 	printf ("identificador \n");
 	break;
 	
