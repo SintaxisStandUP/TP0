@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-int automata (int estado, int carac)
+int automata (int estado, int carac) //Esto iria en el "scanner.h"
 
 int main (void) {
 
