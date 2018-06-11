@@ -70,33 +70,18 @@ switch (estado){
 	break;
 	
 	case 10:
+	if (isspace(carac)){
+		estado=0;
+		break;
+		}
+	else if (isdigit(carac)){
+		estado = 1;
+		break;}
+	else if (isalpha(carac)){
+		estado = 3;
+		break;}
+	else
+		estado = 99;
 	printf ("Error \n");
 	break;	
 	}
-
-}
-printf("\nfin \n");
-int fclose (FILE *archivo);
-return 0;
-}
-
-/*
-estado  :=  INICIAL;
-
-while  not  debo_parar(estado)
-
-Leer  caracter
-
-estado  :=  T[estado][caracter];
-/*  otras  acciones  como  contar  líneas
-Armar  lexema,  etc  
-end  while;
-if  aceptor(estado)  then
-if  centinela(estado)  then
-unput(caracter);
-accept(state);  /*  retornar  token  
-else
-error;/*  devolver  token  de  error  
-o  invocar  rutina  de  manejor  de  error  
-end  if  ;
-*/
