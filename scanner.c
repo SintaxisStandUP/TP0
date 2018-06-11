@@ -70,6 +70,18 @@ switch (estado){
 	break;
 	
 	case 10:
+	if (isspace(carac)){
+		estado=0;
+		break;
+		}
+	else if (isdigit(carac)){
+		estado = 1;
+		break;}
+	else if (isalpha(carac)){
+		estado = 3;
+		break;}
+	else
+		estado = 99;
 	printf ("Error \n");
 	break;	
 	}
