@@ -1,87 +1,36 @@
 #include <stdio.h>
 #include <ctype.h>
 
+int automata (int estado, int carac)
+
 int main (void) {
-FILE *archivo;
-archivo = fopen ("lexemas.txt","r");
+
 int estado = 0;
 int carac;
 int acum_ident = 0;
 int acum_const = 0;
 int acum_error = 0;
-char lexemaIdentificador [200];
+int resultados[20];
+int i = 0;
 
+FILE *archivo;
+archivo = fopen ("lexemas.txt","r");
 
 while (!feof(archivo))
 {
-carac = getc(archivo);
-switch (estado){
-	case 0:
-	if (isspace(carac)){
-		estado=0;
-		break;
-		}
-	else if (isdigit(carac)){
-		estado = 1;
-		break;}
-	else if (isalpha(carac)){
-		estado = 3;
-		break;}
-	else
-		estado = 10;
-	
-	case 1:
-	if (isspace(carac)){
-		estado=2;
-		break;
-		}
-	else if (isdigit(carac)){
-		estado = 1;
-		break;}
-	else if (isalpha(carac)){
-		estado = 10;
-		break;}
-	else
-		estado = 10;
-	break;	
-	
-	case 2:
-	estado = 99;
-	acum_const += 1;
-	printf ("constante entera \n");
-	break;
-	
-	case 3:
-	if (isspace(carac)){
-		estado=4;
-		break;
-		}
-	else if (isdigit(carac)||isalpha(carac)){
-		estado = 3;
-		break;}
-	else
-		estado = 10;
-	break;
-	
-	case 4:
-	estado = 99;
-	acum_ident += 1;
-	printf ("identificador \n");
-	break;
-	
-	case 10:
-	if (isspace(carac)){
-		estado=0;
-		break;
-		}
-	else if (isdigit(carac)){
-		estado = 1;
-		break;}
-	else if (isalpha(carac)){
-		estado = 3;
-		break;}
-	else
-		estado = 99;
-	printf ("Error \n");
-	break;	
-	}
+	carac = getc(archivo); //Lee un caracter
+	estado = automata (estado, carac)//Invoco al scanner que me devuelve la categoria lexica(estado)
+	resultados [i] = estado;
+	i++;
+	//ACA empezaria el tema de calcular a partir de la lista
+	//la cantidad de ident y despues mostrar por pantalla y demas.
+	//Ahora paso al scanner.
+
+}
+
+
+
+
+
+return 0;
+}
