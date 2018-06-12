@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 //Puede recibir un estado y el caracter leido y hacer determinada accion
-int automata (int estado, int carac){
+int automata (int estado, int carac) {
 switch (estado)
 	{
 	case 0:
@@ -30,7 +30,7 @@ switch (estado)
 	if (isspace(carac)){
 		estado=4;
 		}
-	else if (isdigit(carac) || isalpha(carac){
+	else if (isdigit(carac) || isalpha(carac)){
 		estado = 3;
 		}
 	break;

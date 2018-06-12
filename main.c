@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <ctype.h>
 
-int automata (int estado, int carac) //Esto iria en el "scanner.h"
+int automata(int estado, int carac); //Esto iria en el "scanner.h"
 
-int main (void) {
-
+int main()
+{
 int estado = 0;
 int estadoAnt = 0;
 int carac;
@@ -15,12 +15,12 @@ int resultados[20];
 int i = 0;
 
 FILE *archivo;
-archivo = fopen ("lexemas.txt","r");
+archivo = fopen ("lexe.txt","r");
 
 while (!feof(archivo))
 {
 	carac = getc(archivo); //Lee un caracter
-	estado = automata (estado, carac)//Invoco al scanner que me devuelve la categoria lexica(estado)
+	estado = automata (estado, carac);//Invoco al scanner que me devuelve la categoria lexica(estado)
 	if (estado == 4 || estado == 2)
 	{
 	resultados[i] = estado;
@@ -32,9 +32,6 @@ while (!feof(archivo))
 	//ACA empezaria el tema de calcular a partir de la lista
 	//la cantidad de ident y despues mostrar por pantalla y demas.
 	//Ahora paso al scanner.
-
-
-
 
 return 0;
 }
