@@ -2,9 +2,7 @@
 #include <ctype.h>
 
 //Puede recibir un estado y el caracter leido y hacer determinada accion
-int estadoAnt;
 int automata (int estado, int carac){
-while (estado =! 99){
 switch (estado)
 	{
 	case 0:
@@ -27,11 +25,16 @@ switch (estado)
 		estado = 2;
 		}
 	break;
-	
-	case 2:
-	return 2;
+
+	case 3:
+	if (isspace(carac)){
+		estado=4;
+		}
+	else if (isdigit(carac) || isalpha(carac){
+		estado = 3;
+		}
 	break;
+
 	}
-estadoAnt = estado;
-}
+return estado;
 }

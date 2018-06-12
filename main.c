@@ -6,6 +6,7 @@ int automata (int estado, int carac) //Esto iria en el "scanner.h"
 int main (void) {
 
 int estado = 0;
+int estadoAnt = 0;
 int carac;
 int acum_ident = 0;
 int acum_const = 0;
@@ -20,14 +21,17 @@ while (!feof(archivo))
 {
 	carac = getc(archivo); //Lee un caracter
 	estado = automata (estado, carac)//Invoco al scanner que me devuelve la categoria lexica(estado)
-	resultados [i] = estado;
+	if (estado == 4 || estado == 2)
+	{
+	resultados[i] = estado;
 	i++;
+	estado = 0;
+	}
+}
+	
 	//ACA empezaria el tema de calcular a partir de la lista
 	//la cantidad de ident y despues mostrar por pantalla y demas.
 	//Ahora paso al scanner.
-
-}
-
 
 
 
