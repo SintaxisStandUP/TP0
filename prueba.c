@@ -3,11 +3,15 @@
  
 int main()
 {
-   char cadena[] = ";0ñfáR(4h&~?RÛ1/";
+  /* char cadena[] = ";0ñfáR(4h&~?RÛ1/";
    int i;
    
    for(i = 0; cadena[i]; i++) 
       printf("%c, %d\n", cadena[i], isdigit(cadena[i]));
+*/
+	char cadena[] = "H0L	A ";
+	for(int i = 0; i<7; i++) 
+      printf("%c .. %d\n", cadena[i], isspace(cadena[i]));
 
    return 0;
 }

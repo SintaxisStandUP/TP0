@@ -15,6 +15,9 @@ switch (estado)
 	else if (isalpha(carac)){
 		estado = 3;
 		}
+	else {
+		estado = 5;
+		}
 	
 	break;
 	case 1:
@@ -35,6 +38,21 @@ switch (estado)
 		}
 	break;
 
+	case 5:
+	if (isspace(carac)){
+		estado=10;
+		}
+	else if (isdigit(carac)){
+		estado = 1;
+		}
+	else if (isalpha(carac)){
+		estado = 3;
+		}
+
+	else {
+		estado = 5; //Es redundante pero lo pongo por las dudas
+		}
+	break;
 	}
 return estado;
 }
