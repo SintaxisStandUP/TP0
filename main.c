@@ -42,11 +42,29 @@ while (!feof(archivo))
 	boolAux = 1;
 	}
 }
-	
+
 	//ACA empezaria el tema de calcular a partir de la lista
 	//la cantidad de ident y despues mostrar por pantalla y demas.
-	for (int h=0;h<i;h++)
-	printf ("estado resultante nro %d : %d\n",h, resultados[h]);
+	for (int h=0; h<i ;h++)
+    {
+		if (resultados[h]==2){
+			printf ("constante entera");
+			acum_const+=1;}
+		else{
+			if (resultados[h]==4)
+			{	printf ("identificador");
+				acum_ident+=1;}
+					else
+					{	printf ("error");
+						acum_error+=1; }
+			}
+	printf ("Totales: \n");
+	printf ("Identificadores %d \n",acum_ident);
+	printf ("Constantes enteras %d \n",acum_const);
+	printf ("Errores %d \n",acum_error);
+
+//	for (int h=0;h<i;h++)
+	//printf ("estado resultante nro %d : %d\n",h, resultados[h]);
 
 return 0;
 }
