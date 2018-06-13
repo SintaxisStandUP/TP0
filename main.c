@@ -48,16 +48,18 @@ while (!feof(archivo))
 	for (int h=0; h<i ;h++)
     {
 		if (resultados[h]==2){
-			printf ("constante entera");
+			printf ("constante entera\n");
 			acum_const+=1;}
 		else{
 			if (resultados[h]==4)
-			{	printf ("identificador");
+			{	printf ("identificador\n");
 				acum_ident+=1;}
 					else
-					{	printf ("error");
+					{	printf ("error\n");
 						acum_error+=1; }
 			}
+}	
+	printf ("----\n");
 	printf ("Totales: \n");
 	printf ("Identificadores %d \n",acum_ident);
 	printf ("Constantes enteras %d \n",acum_const);
@@ -65,6 +67,5 @@ while (!feof(archivo))
 
 //	for (int h=0;h<i;h++)
 	//printf ("estado resultante nro %d : %d\n",h, resultados[h]);
-
 return 0;
 }
