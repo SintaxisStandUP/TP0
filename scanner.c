@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-//Puede recibir un estado y el caracter leido y hacer determinada accion
+//Puede recibir un estado y el caracter leido y realiza una determinada acción.
 int automata (int estado, int carac) {
 switch (estado)
 	{
@@ -50,7 +50,7 @@ switch (estado)
 		}
 
 	else {
-		estado = 5; //Es redundante pero lo pongo por las dudas
+		estado = 5;
 		}
 	break;
 	}

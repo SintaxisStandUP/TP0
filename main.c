@@ -1,7 +1,33 @@
+/*
+TP 0 – 2018 - Un escáner elemental
+Grupo 02
+
+Cortez Francisco Andres	1638130
+Kuric Mariela		1627740
+Storozuk Irina Belén	1634355
+Vazquez Candela		1646916
+Tabla del automata:
+	Letra	Digito	Otros	Espacio
+0-	3	1	10	0
+1	10	1	10	2
+2+	99	99	99	99
+3	3	3	10	4
+4+	99	99	99	99
+10	3	1	99	0
+
+Referencias:
+0-  ->	Estado inicial
+1   ->	Reconociendo constante entera
+2+  ->	Constante entera reconocida
+3   ->	Reconociendo identificador
+4+  ->	Identificador reconocido
+10  ->	Error
+Nota: En la implementación del código, con fines practicos se agrego un estado "5".
+*/
+
 #include <stdio.h>
 #include <ctype.h>
-
-int automata(int estado, int carac); //Esto iria en el "scanner.h"
+#include "scanner.h"
 
 int main()
 {
@@ -43,8 +69,6 @@ while (!feof(archivo))
 	}
 }
 
-	//ACA empezaria el tema de calcular a partir de la lista
-	//la cantidad de ident y despues mostrar por pantalla y demas.
 	for (int h=0; h<i ;h++)
     {
 		if (resultados[h]==2){
@@ -65,7 +89,5 @@ while (!feof(archivo))
 	printf ("Constantes enteras %d \n",acum_const);
 	printf ("Errores %d \n",acum_error);
 
-//	for (int h=0;h<i;h++)
-	//printf ("estado resultante nro %d : %d\n",h, resultados[h]);
 return 0;
 }
