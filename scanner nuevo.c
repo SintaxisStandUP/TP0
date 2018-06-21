@@ -50,8 +50,16 @@ while (estado != 2 && estado != 4 && estado != 10)
 		}
 	break;
 	}
-	
 }
+	
+	if(estado == 2)
+	{
+		return 2; //retorna token cte	
+	}
+	else if(estado == 4)
+	{
+		return 4; //retorna token identificador
+	}
 }
 /*
 Tabla del automata:
