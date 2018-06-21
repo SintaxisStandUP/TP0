@@ -1,8 +1,20 @@
 #include <stdio.h>
 #include <ctype.h>
 
-//Puede recibir un estado y el caracter leido y realiza una determinada acción.
-int automata (int estado, int carac) {
+void automata (void) {
+FILE *archivo;
+int carac;
+
+archivo = fopen("lexemas.txt", r);
+int TT[7][4] = {{0}}
+int estado = 0;
+while (estado)
+{
+	carac = getc(archivo);
+	
+	
+
+}
 
 return estado;
 }
