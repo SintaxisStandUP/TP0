@@ -56,3 +56,29 @@ switch (estado)
 	}
 return estado;
 }
+/*
+Tabla del automata:
+	Letra	Digito	Otros	Espacio
+0-	3	1	10	0
+1	10	1	10	2
+2+	99	99	99	99
+3	3	3	10	4
+4+	99	99	99	99
+10	3	1	99	0
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
