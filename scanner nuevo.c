@@ -58,9 +58,12 @@ while (estado != 2 && estado != 4 && estado != 10)
 	break;
 	}
 	
+/*	Lo dejo comentado porque no creo que deba ir acá pero en algún lado hay que meterlo ya que es lo que maneja el error
+
 	case 10:
 	if (isspace(carac)){
 		estado = TT[6][3];
+		return 10; // 
 		}
 	else if (isdigit(carac)){
 		estado = TT[6][1];
@@ -71,22 +74,20 @@ while (estado != 2 && estado != 4 && estado != 10)
 	else {
 		estado = TT[6][2];
 		}
-	break;
+	break; */
 }
 	
 	if(estado == 2)
 	{
-		acum_const+=1;
 		return 2; //retorna token cte	
 	}
 	else if(estado == 4)
 	{
-		acum_ident+=1;
 		return 4; //retorna token identificador
 	}
 	else if (estado==10)
 	{
-		return 10;
+		return 10; // retorna token error
 	}
 }
 /*
