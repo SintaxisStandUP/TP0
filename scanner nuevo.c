@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-void automata (void) {
+int automata (void) {
 FILE *archivo;
 int carac;
 
@@ -13,6 +13,8 @@ int TT[6][4] = {{3, 1, 10, 0},
 		{99, 99, 99, 99},
 		{3, 1, 99, 0}};
 int estado = 0;
+
+
 while (estado != 2 && estado != 4 && estado != 10)
 {
 	carac = getc(archivo); //Leer con getc
@@ -32,6 +34,7 @@ while (estado != 2 && estado != 4 && estado != 10)
 		estado = TT[0][2];
 		}
 	break;
+	
 	case 1:
 	if (isdigit(carac)){
 		estado=TT[1][1];
@@ -39,6 +42,9 @@ while (estado != 2 && estado != 4 && estado != 10)
 	else if (isspace(carac)){
 		estado = TT[1][3];
 		}
+	else 
+		estado = TT[1][0];
+		
 	break;
 
 	case 3:
@@ -48,17 +54,39 @@ while (estado != 2 && estado != 4 && estado != 10)
 	else if (isdigit(carac) || isalpha(carac)){
 		estado = TT[3][1];
 		}
+	else estado = TT[3][2];
 	break;
 	}
+	
+	case 10:
+	if (isspace(carac)){
+		estado = TT[6][3];
+		}
+	else if (isdigit(carac)){
+		estado = TT[6][1];
+		}
+	else if (isalpha(carac)){
+		estado = TT[6][0];
+		}
+	else {
+		estado = TT[6][2];
+		}
+	break;
 }
 	
 	if(estado == 2)
 	{
+		acum_const+=1;
 		return 2; //retorna token cte	
 	}
 	else if(estado == 4)
 	{
+		acum_ident+=1;
 		return 4; //retorna token identificador
+	}
+	else if (estado==10)
+	{
+		return 10;
 	}
 }
 /*
