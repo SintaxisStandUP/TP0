@@ -24,41 +24,41 @@ while (estado != 2 && estado != 4 && estado != 10)
 	switch (estado)
 	{
 	case 0:
-	if (isspace(carac)){
-		estado = TT[0][3];
-		}
-	else if (isdigit(carac)){
-		estado = TT[0][1];
-		}
-	else if (isalpha(carac)){
-		estado = TT[0][0];
-		}
-	else {
-		estado = TT[0][2];
-		}
-	break;
-	
-	case 1:
-	if (isdigit(carac)){
-		estado=TT[1][1];
-		}
-	else if (isspace(carac)){
-		estado = TT[1][3];
-		}
-	else 
-		estado = TT[1][0];
+		if (isspace(carac)){
+			estado = TT[0][3];
+			}
+		else if (isdigit(carac)){
+			estado = TT[0][1];
+			}
+		else if (isalpha(carac)){
+			estado = TT[0][0];
+			}
+		else {
+			estado = TT[0][2];
+			}
+		break;
 		
-	break;
+	case 1:
+		if (isdigit(carac)){
+			estado=TT[1][1];
+			}
+		else if (isspace(carac)){
+			estado = TT[1][3];
+			}
+		else 
+			estado = TT[1][0];
+			
+		break;
 
 	case 3:
-	if (isspace(carac)){
-		estado=TT[3][3];
-		}
-	else if (isdigit(carac) || isalpha(carac)){
-		estado = TT[3][1];
-		}
-	else estado = TT[3][2];
-	break;
+		if (isspace(carac)){
+			estado=TT[3][3];
+			}
+		else if (isdigit(carac) || isalpha(carac)){
+			estado = TT[3][1];
+			}
+		else estado = TT[3][2];
+		break;
 	}
 
 } //end While
@@ -94,11 +94,12 @@ while(1)
 }
 /*
 Tabla del automata:
-	Letra	Digito	Otros	Espacio
-0-	3	1	10	0
-1	10	1	10	2
-2+	99	99	99	99
-3	3	3	10	4
-4+	99	99	99	99
-10	3	1	10	0
+	Letra	Digito	Otros	Espacio	EOF
+0-	3	1	10	0	15
+1	10	1	10	2	15
+2+	99	99	99	99	15
+3	--	3	10	4	15
+4+	99	99	99	99	15
+10	3	1	10	0	15
+15	99	99	99	99	99
 */

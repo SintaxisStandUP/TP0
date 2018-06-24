@@ -44,17 +44,17 @@ while (token != EOF) //Hasta fin de cadena.
 	if(token == 2)
 	{
 		printf ("constante entera\n");
-		acum_const+=1;
+		acum_const++;
 	}
 	else if(token == 4)
 	{
 		printf ("identificador\n");
-		acum_ident+=1;
+		acum_ident++;
 	}
 	else if (token == 10)
 	{
 		printf ("error\n");
-		acum_error+=1;
+		acum_error++;
 	}
 }			
 	printf ("----\n");
