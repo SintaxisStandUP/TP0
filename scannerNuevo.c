@@ -2,11 +2,11 @@
 #include <ctype.h>
 #include "scanner.h"
 
-int scanner (void) {
-FILE *archivo;
+int scanner (FILE **archivo) {
+//FILE *archivo;
 int carac;
 
-archivo = fopen("lexemas.txt","r");
+//archivo = fopen("lexemas.txt","r");
 int TT[6][4] = {{3, 1, 10, 0},
 		{10, 1, 10, 2},		
 		{99, 99, 99, 99},
@@ -14,11 +14,13 @@ int TT[6][4] = {{3, 1, 10, 0},
 		{99, 99, 99, 99},
 		{3, 1, 10, 0}};
 int estado = 0;
-
-
 while (estado != 2 && estado != 4 && estado != 10)
 {
-	carac = getc(archivo); //Leer con getc
+	carac = getc(*archivo); //Leer con getc
+	if (carac == EOF)
+	{
+		return EOF;
+	}
 	switch (estado)
 	{
 	case 0:
@@ -58,7 +60,7 @@ while (estado != 2 && estado != 4 && estado != 10)
 	else estado = TT[3][2];
 	break;
 	}
-	
+
 } //end While
 
 while(1)
@@ -79,11 +81,12 @@ while(1)
 			}
 		else if (isdigit(carac) || isalpha(carac)){
 			estado = TT[5][1]; //Finaliza el error (cte/ide)
-			carac = ungetc(carac, archivo); //retrocedo un caracter
+			carac = ungetc(carac, *archivo); //retrocedo un caracter
+			return 10;
 			}
 		else { //Sigue el error
 			estado = TT[5][2];
-			carac = getc(archivo);			
+			carac = getc(*archivo);			
 			}
 	}
 }

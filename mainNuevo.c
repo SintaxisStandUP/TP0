@@ -8,10 +8,12 @@ int token = 0;
 int acum_ident = 0;
 int acum_const = 0;
 int acum_error = 0;
-
-while (token == EOF) //Hasta fin de cadena.
+FILE *archivo;
+archivo = fopen("lexemas.txt","r");
+int i = 0;
+while (i<28) //Hasta fin de cadena.
 {
-	token=scanner();
+	token=scanner(&archivo);
 
 	if(token == 2)
 	{
@@ -28,6 +30,7 @@ while (token == EOF) //Hasta fin de cadena.
 		printf ("error\n");
 		acum_error+=1;
 	}
+i++;
 }			
 	printf ("----\n");
 	printf ("Totales: \n");
