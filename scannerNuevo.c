@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <ctype.h>
+#include "scanner.h"
 
-int automata (void) {
+int scanner (void) {
 FILE *archivo;
 int carac;
 
-archivo = fopen("lexemas.txt", r);
+archivo = fopen("lexemas.txt","r");
 int TT[6][4] = {{3, 1, 10, 0},
 		{10, 1, 10, 2},		
 		{99, 99, 99, 99},

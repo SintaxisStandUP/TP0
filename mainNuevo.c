@@ -4,39 +4,31 @@
 
 int main()
 {
-int estado = 0;
-int carac;
+int token = 0;
 int acum_ident = 0;
 int acum_const = 0;
 int acum_error = 0;
 
-
-FILE *archivo;
-archivo = fopen ("lexemas.txt","r");
-
-while (!feof(archivo))
+while (token == EOF) //Hasta fin de cadena.
 {
-	estado=automata();
+	token=scanner();
 
-	if(estado == 2)
+	if(token == 2)
 	{
 		printf ("constante entera\n");
 		acum_const+=1;
 	}
-	else if(estado == 4)
+	else if(token == 4)
 	{
 		printf ("identificador\n");
 		acum_ident+=1;
 	}
-	else if (estado==10)
+	else if (token == 10)
 	{
 		printf ("error\n");
 		acum_error+=1;
-		
-		
 	}
-}		
-}	
+}			
 	printf ("----\n");
 	printf ("Totales: \n");
 	printf ("Identificadores %d \n",acum_ident);
