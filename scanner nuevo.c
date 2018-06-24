@@ -11,7 +11,7 @@ int TT[6][4] = {{3, 1, 10, 0},
 		{99, 99, 99, 99},
 		{3, 3, 10, 4},
 		{99, 99, 99, 99},
-		{3, 1, 99, 0}};
+		{3, 1, 10, 0}};
 int estado = 0;
 
 
@@ -58,25 +58,10 @@ while (estado != 2 && estado != 4 && estado != 10)
 	break;
 	}
 	
-/*	Lo dejo comentado porque no creo que deba ir acá pero en algún lado hay que meterlo ya que es lo que maneja el error
+} //end While
 
-	case 10:
-	if (isspace(carac)){
-		estado = TT[6][3];
-		return 10; // 
-		}
-	else if (isdigit(carac)){
-		estado = TT[6][1];
-		}
-	else if (isalpha(carac)){
-		estado = TT[6][0];
-		}
-	else {
-		estado = TT[6][2];
-		}
-	break; */
-}
-	
+while(1)
+{
 	if(estado == 2) //estado aceptor
 	{
 		return 2; //retorna token cte	
@@ -88,19 +73,20 @@ while (estado != 2 && estado != 4 && estado != 10)
 	else if (estado==10) // estado de error
 	{
 		if (isspace(carac)){
-			estado = TT[6][3];
+			estado = TT[5][3];
 			return 10; // retorna token error
 			}
-		else if (isdigit(carac)){
-			estado = TT[6][1];
+		else if (isdigit(carac) || isalpha(carac)){
+			estado = TT[5][1]; //Finaliza el error (cte/ide)
+			carac = ungetc(carac, archivo); //retrocedo un caracter
 			}
-		else if (isalpha(carac)){
-			estado = TT[6][0];
-			}
-		else {
-			estado = TT[6][2];
+		else { //Sigue el error
+			estado = TT[5][2];
+			carac = getc(archivo);			
 			}
 	}
+}
+
 }
 /*
 Tabla del automata:
@@ -110,5 +96,5 @@ Tabla del automata:
 2+	99	99	99	99
 3	3	3	10	4
 4+	99	99	99	99
-10	3	1	99	0
+10	3	1	10	0
 */

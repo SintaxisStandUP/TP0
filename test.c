@@ -15,8 +15,8 @@ while (i<5)
 	i++;
 }
 i = 0;
-caract = ungetc (carac, archivo);
-printf("caract es: %c \n", caract);
+carac = ungetc (carac, archivo);
+printf("caract es: %c \n", carac);
 
 carac = getc(archivo);
 printf("el caracter despues de ungetc: %c \n",carac);
