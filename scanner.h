@@ -1,6 +1,6 @@
 #ifndef HEADER_SCANNER
 #define HEADER_SCANNER
 
-int scanner();
+int scanner(FILE **archivo);
 
 #endif

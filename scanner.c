@@ -2,104 +2,63 @@
 #include <ctype.h>
 #include "scanner.h"
 
-int scanner (FILE **archivo) {
-//FILE *archivo;
-int carac;
-
-//archivo = fopen("lexemas.txt","r");
-int TT[6][4] = {{3, 1, 10, 0},
-		{10, 1, 10, 2},		
-		{99, 99, 99, 99},
-		{3, 3, 10, 4},
-		{99, 99, 99, 99},
-		{3, 1, 10, 0}};
-int estado = 0;
-while (estado != 2 && estado != 4 && estado != 10)
+int scanner (FILE **archivo) 
 {
-	carac = getc(*archivo); //Leer con getc
-	if (carac == EOF)
+	int carac;
+
+	int TT[7][5] = {{3, 1, 5, 0, 6},
+			{5, 1, 5, 2, 6},		
+			{99, 99, 99, 99, 6},
+			{3, 3, 5, 4, 6},
+			{99, 99, 99, 99, 6},
+			{3, 1, 5, 0, 6},
+			{99, 99, 99, 99, 6}};
+	int estado = 0;
+
+	while (!feof(*archivo))
 	{
-		return EOF;
-	}
-	switch (estado)
-	{
-	case 0:
-		if (isspace(carac)){
-			estado = TT[0][3];
-			}
-		else if (isdigit(carac)){
-			estado = TT[0][1];
-			}
-		else if (isalpha(carac)){
-			estado = TT[0][0];
-			}
-		else {
-			estado = TT[0][2];
-			}
-		break;
-		
-	case 1:
-		if (isdigit(carac)){
-			estado=TT[1][1];
-			}
+		carac = getc(*archivo); //Leer con getc
+		if (carac == EOF) //Identificamos el caracter
+		{
+			carac = 4;
+		}
+
 		else if (isspace(carac)){
-			estado = TT[1][3];
+			carac = 3;
+				}
+		else if (isdigit(carac)){
+			carac = 1;
+				}
+		else if (isalpha(carac)){
+			carac = 0;
+				}
+		else {
+			carac = 2;	
 			}
-		else 
-			estado = TT[1][0];
-			
-		break;
+		estado = TT[estado][carac];
 
-	case 3:
-		if (isspace(carac)){
-			estado=TT[3][3];
-			}
-		else if (isdigit(carac) || isalpha(carac)){
-			estado = TT[3][1];
-			}
-		else estado = TT[3][2];
-		break;
-	}
-
-} //end While
-
-while(1)
-{
-	if(estado == 2) //estado aceptor
-	{
-		return 2; //retorna token cte	
-	}
-	else if(estado == 4) // estado aceptor
-	{
-		return 4; //retorna token identificador
-	}
-	else if (estado==10) // estado de error
-	{
-		if (isspace(carac)){
-			estado = TT[5][3];
-			return 10; // retorna token error
-			}
-		else if (isdigit(carac) || isalpha(carac)){
-			estado = TT[5][1]; //Finaliza el error (cte/ide)
-			carac = ungetc(carac, *archivo); //retrocedo un caracter
-			return 10;
-			}
-		else { //Sigue el error
-			estado = TT[5][2];
-			carac = getc(*archivo);			
-			}
+		if(estado == 2) //estado aceptor
+		{
+			return 2; //retorna token cte	
+		}
+		else if(estado == 4) // estado aceptor
+		{
+			return 4; //retorna token identificador
+		}
+		else if (estado==5) // estado de error
+		{
+			carac = getc(*archivo);
+			if (isspace(carac)){
+				return 5; // retorna token error
+				}
+			else if (isdigit(carac) || isalpha(carac)){
+				carac = ungetc(carac, *archivo); //retrocedo un caracter
+				return 5;
+				}
+		}
+		else if(estado == 6) // estado aceptor
+		{
+			return 6; //retorna token FIN DE TEXTO
+		}
 	}
 }
-
-}
-/*
-Tabla del automata:
-	Letra	Digito	Otros	Espacio	EOF
-0-	3	1	10	0	15
-1	10	1	10	2	15
-2+	99	99	99	99	15
-3	--	3	10	4	15
-4+	99	99	99	99	15
-10	3	1	10	0	15
-15	99	99	99	99	99
-*/
