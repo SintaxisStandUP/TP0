@@ -5,60 +5,58 @@
 int scanner (FILE **archivo) 
 {
 	int carac;
+	int caracter; //es un auxiliar para no modificar carac y poder hacer "ungetc(); con lo que esta guardado en carac"
 
-	int TT[7][5] = {{3, 1, 5, 0, 6},
-			{5, 1, 5, 2, 6},		
-			{99, 99, 99, 99, 6},
-			{3, 3, 5, 4, 6},
-			{99, 99, 99, 99, 6},
-			{3, 1, 5, 0, 6},
-			{99, 99, 99, 99, 6}};
-	int estado = 0;
+	int TT[8][5] = {{3, 1, 5, 0, 7},
+			{2, 1, 2, 2, 2},		
+			{99, 99, 99, 99, 99},
+			{3, 3, 4, 4, 4},
+			{99, 99, 99, 99, 99},
+			{6, 6, 5, 6, 6}, //nueva columna recono error
+			{99, 99, 99, 99, 99},
+			{99, 99, 99, 99, 99}};
+	int estado = INICIAL;
 
-	while (!feof(*archivo))
+	while (estado != CTE_REC && estado != IDE_REC && estado != ERROR && estado != FDT)
 	{
 		carac = getc(*archivo); //Leer con getc
 		if (carac == EOF) //Identificamos el caracter
 		{
-			carac = 4;
+			caracter = END;
 		}
 
 		else if (isspace(carac)){
-			carac = 3;
+			caracter = ESPACIO;
 				}
 		else if (isdigit(carac)){
-			carac = 1;
+			caracter = DIGITO;
 				}
 		else if (isalpha(carac)){
-			carac = 0;
+			caracter = LETRA;
 				}
 		else {
-			carac = 2;	
+			caracter = OTRO;	
 			}
-		estado = TT[estado][carac];
-
-		if(estado == 2) //estado aceptor
-		{
-			return 2; //retorna token cte	
-		}
-		else if(estado == 4) // estado aceptor
-		{
-			return 4; //retorna token identificador
-		}
-		else if (estado==5) // estado de error
-		{
-			carac = getc(*archivo);
-			if (isspace(carac)){
-				return 5; // retorna token error
-				}
-			else if (isdigit(carac) || isalpha(carac)){
-				carac = ungetc(carac, *archivo); //retrocedo un caracter
-				return 5;
-				}
-		}
-		else if(estado == 6) // estado aceptor
-		{
-			return 6; //retorna token FIN DE TEXTO
-		}
+		estado = TT[estado][caracter];
 	}
+//tenemos en "carac" guardado un simbolo que es centinela, por lo tanto hacemos ungetc();
+		if(estado == CTE_REC) //estado aceptor
+		{
+			carac = ungetc(carac, *archivo);
+			return TOKEN_CTE;	
+		}
+		else if(estado == IDE_REC) // estado aceptor
+		{
+			carac = ungetc(carac, *archivo);
+			return TOKEN_IDE;
+		}
+		else if (estado == ERROR) // estado de error
+		{
+			carac = ungetc(carac, *archivo);
+			return TOKEN_ERROR;
+		}
+		else if(estado == FDT) // estado aceptor
+		{
+			return TOKEN_FDT;
+		}
 }

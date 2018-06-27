@@ -9,23 +9,24 @@ int acum_ident = 0;
 int acum_const = 0;
 int acum_error = 0;
 FILE *archivo;
+//archivo = fopen("P.txt","r");
 archivo = fopen("lexemas.txt","r");
 int i = 0;
-while (token != 6) //Hasta fin de cadena.
+while (token != TOKEN_FDT) //Hasta fin de cadena.
 {
 	token=scanner(&archivo);
 
-	if(token == 2)
+	if(token == TOKEN_CTE)
 	{
 		printf ("constante entera\n");
 		acum_const++;
 	}
-	else if(token == 4)
+	else if(token == TOKEN_IDE)
 	{
 		printf ("identificador\n");
 		acum_ident++;
 	}
-	else if (token == 5)
+	else if (token == TOKEN_ERROR)
 	{
 		printf ("error\n");
 		acum_error++;
