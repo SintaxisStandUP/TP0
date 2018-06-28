@@ -9,12 +9,11 @@ int acum_ident = 0;
 int acum_const = 0;
 int acum_error = 0;
 FILE *archivo;
-//archivo = fopen("P.txt","r");
 archivo = fopen("lexemas.txt","r");
 int i = 0;
-while (token != TOKEN_FDT) //Hasta fin de cadena.
+while (token != TOKEN_FDT)
 {
-	token=scanner(&archivo);
+	token=scanner(archivo);
 
 	if(token == TOKEN_CTE)
 	{

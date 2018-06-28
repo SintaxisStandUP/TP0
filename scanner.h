@@ -16,6 +16,6 @@ enum columnas {
 	
 };
 enum estados {INICIAL, RECDIGITO, CTE_REC, RECLETRA, IDE_REC, REC_ERROR, ERROR, FDT};
-int scanner(FILE **archivo);
+int scanner(FILE *archivo);
 
 #endif
